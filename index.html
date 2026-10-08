@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Today</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f5f4;--cd:#fff;--ink:#1b2420;--mut:#7a857f;--ln:#e3e7e4;--g:#0a6a45;--o:#f08a2c;--bl:#3f7fe0;--pr:#6a8ab8;--fa:#d9805f;--ca:#8aa850;--fi:#4fa59a}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1512;--cd:#18201c;--ink:#eef3f0;--mut:#8d9993;--ln:#26302b;--g:#3fbf8a}}
+:root[data-theme="dark"]{--bg:#0f1512;--cd:#18201c;--ink:#eef3f0;--mut:#8d9993;--ln:#26302b;--g:#3fbf8a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Roboto,system-ui,sans-serif}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+main{padding:0 16px 120px;max-width:520px;margin:0 auto}
+header{display:flex;align-items:center;gap:10px;padding:14px 16px 6px;max-width:520px;margin:0 auto}
+header b{display:block;font-size:30px;color:var(--g);line-height:1.1}header small{color:var(--mut);font-size:14px}
+header .ar{font-size:26px;color:var(--mut);padding:4px 8px}
+.ring{position:relative;width:min(80vw,300px);margin:8px auto;cursor:pointer}
+.ring svg{width:100%;display:block}.ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.c small{color:var(--mut)}.c .big{font-size:56px;font-weight:700;line-height:1}.c .w{color:var(--bl);font-weight:600;margin-top:4px}
+.pager{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;scrollbar-width:none}.pager::-webkit-scrollbar{display:none}
+.pg{flex:0 0 100%;scroll-snap-align:start;display:grid;gap:10px}.p1{grid-template-columns:1fr 1fr}.p2{grid-template-columns:1fr 1fr 1fr}
+.mc{background:var(--cd);border-radius:20px;padding:14px;border:1px solid var(--ln)}.mc b{font-size:28px}.mc b small{font-size:14px;color:var(--mut)}
+.mc span{display:block;margin:2px 0 8px;font-weight:600;font-size:14px;overflow-wrap:anywhere}.mc em{font-style:normal;color:var(--mut);font-size:13px}
+.mc i{display:block;height:6px;background:var(--ln);border-radius:9px;margin-bottom:6px;overflow:hidden}.mc u{display:block;height:100%;border-radius:9px}
+.dots{display:flex;justify-content:center;gap:6px;margin:10px 0}.dots i{width:8px;height:8px;border-radius:9px;background:var(--ln)}.dots i.on{width:24px;background:var(--g)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.cd{border-radius:24px;padding:16px;min-height:112px;text-align:left;background:var(--cd);border:1px solid var(--ln)}
+.cd h4{margin:0 0 6px;font-size:17px}.cd .v{font-size:32px;font-weight:300}.cd small{color:var(--mut);display:block}
+.cd.w{background:linear-gradient(#fff0,#d6e6ff 140%)}.cd.f{background:linear-gradient(#fff0,#fbdcb4 140%)}.cd.s{background:linear-gradient(#fff0,#c9e6d6 140%)}
+.cd.dk{background:#161a22;color:#fff;border-color:#161a22}.cd.dk small{color:#9aa3b2}
+h3{margin:22px 4px 8px;font-size:22px}
+.ml{display:flex;gap:12px;align-items:center;background:var(--cd);border:1px solid var(--ln);border-radius:18px;padding:12px 14px;margin-bottom:8px;width:100%;text-align:left}
+.ml b{display:block}.ml small{color:var(--mut)}.ml .k{margin-left:auto;color:var(--o);font-weight:700;white-space:nowrap}
+.empty{color:var(--mut);text-align:center;padding:22px}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--cd);border-top:1px solid var(--ln);display:flex;justify-content:space-around;align-items:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));max-width:520px;margin:0 auto}
+nav button{flex:1;font-size:12px;color:var(--mut);padding:6px}nav .on{color:var(--ink);font-weight:700}
+nav .plus{flex:0 0 58px;height:58px;border-radius:50%;background:var(--cd);border:1px solid var(--ln);font-size:30px;margin-top:-26px;color:var(--ink);box-shadow:0 4px 14px #0002}
+.sheet{position:fixed;inset:0;display:none;z-index:9}.sheet.on{display:block}
+.sheet .bg{position:absolute;inset:0;background:#0007}
+.pn{position:absolute;left:0;right:0;bottom:0;background:var(--cd);border-radius:26px 26px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom,0px));max-width:520px;margin:0 auto;max-height:90%;overflow:auto}
+.pn h2{margin:0 0 4px;color:var(--g)}.pn p{margin:0 0 14px;color:var(--mut)}
+.fld{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fld label{font-size:13px;color:var(--mut);display:block}
+input,select{width:100%;font:inherit;padding:12px;border-radius:14px;border:1px solid var(--ln);background:var(--bg);color:var(--ink);margin-top:4px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.chips button{padding:9px 14px;border-radius:99px;border:1px solid var(--ln)}.chips .on{background:var(--g);color:#fff;border-color:var(--g)}
+.go{display:block;width:100%;padding:15px;border-radius:99px;background:var(--g);color:#fff;font-weight:700;margin-top:14px}
+.go.o{background:linear-gradient(90deg,#f97b1c,#e23a2a)}.go.l{background:none;color:var(--ink);border:1px solid var(--ln)}
+.st{display:flex;align-items:center;justify-content:center;gap:24px;margin:16px 0}.st button{width:52px;height:52px;border-radius:50%;border:1px solid var(--ln);font-size:26px}.st b{font-size:40px;min-width:120px;text-align:center}
+.tm{font-size:54px;text-align:center;font-weight:300;margin:10px 0}.bar{height:8px;background:var(--ln);border-radius:9px;overflow:hidden}.bar u{display:block;height:100%;background:var(--o)}
+</style><link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#0a6a45"><link rel="icon" href="/icon.svg"><link rel="apple-touch-icon" href="/icon-192.png"></head><body>
+<header><button class="ar" id="pv" aria-label="Previous day">‹</button><div><b id="ti"></b><small id="su"></small></div><button class="ar" id="nx" aria-label="Next day">›</button></header>
+<main id="m"></main>
+<nav><button class="on">Today</button><button data-s="Progress">Progress</button><button class="plus" id="ad" aria-label="Log a meal">+</button><button data-s="Kitchen">Kitchen</button><button data-s="Me">Me</button></nav>
+<div class="sheet" id="sh"></div>
+<script>
+const K="nt1";let S;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
+S=S||{meals:[],water:{},steps:{},fast:null,hrs:16};
+const sv=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const G={k:1778,p:140,f:60,c:170,fi:25,su:44,na:2300,ch:300,w:2000};
+let D=new Date();D.setHours(0,0,0,0);let rem=false,amt=250,meal="Snacks";
+const $=s=>document.querySelector(s),key=d=>d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(),dk=()=>key(D);
+const T=()=>S.meals.filter(x=>x.d==dk()).reduce((a,x)=>({k:a.k+x.k,p:a.p+x.p,f:a.f+x.f,c:a.c+x.c,fi:a.fi+x.fi}),{k:0,p:0,f:0,c:0,fi:0});
+const r1=n=>Math.round(n*10)/10;
+function fastTxt(){const f=S.fast;if(!f)return"0h 00m";let ms=f.s+f.h*36e5-Date.now(),over=ms<0;ms=Math.abs(ms);const h=Math.floor(ms/36e5),m=Math.floor(ms%36e5/6e4);return(over?"+":"")+h+"h "+String(m).padStart(2,"0")+"m"}
+function mcard(n,e,g,col,u){const left=Math.max(g-e,0),over=e>g;let v=rem?(over?"+"+r1(e-g):r1(left)):r1(e),lab=rem?(over?n+" over by":n+" remaining"):n+" eaten",pct=rem?Math.max(100*(g-e)/g,0):Math.min(100*e/g,100);
+return`<div class="mc"><b>${v}<small>${u}</small></b><span>${lab}</span><i><u style="width:${pct}%;background:${col}"></u></i><em>of ${g}${u}</em></div>`}
+function render(){const t=T(),w=S.water[dk()]||0,st=S.steps[dk()]||0,td=new Date();td.setHours(0,0,0,0);
+const df=Math.round((D-td)/864e5);$("#ti").textContent=df==0?"Today":D.toLocaleDateString("en",{month:"short",day:"numeric"});$("#su").textContent=df==0?"Stay on track":df==-1?"Yesterday":df==1?"Tomorrow":D.toLocaleDateString("en",{weekday:"long"});
+const C1=603.2,C2=502.7,over=t.k>G.k,fr=rem?Math.max(1-t.k/G.k,0):Math.min(t.k/G.k,1),wr=Math.min(w/G.w,1);
+const big=rem?(over?"+"+(t.k-G.k):G.k-t.k):t.k,lab=rem?(over?"Calories over by":"Calories remaining"):"Calories eaten";
+const mel=S.meals.filter(x=>x.d==dk());
+$("#m").innerHTML=`<div class="ring" id="rg"><svg viewBox="0 0 220 220"><g fill="none" stroke-width="10" stroke-linecap="round" transform="rotate(-90 110 110)"><circle cx="110" cy="110" r="96" stroke="var(--ln)"/><circle cx="110" cy="110" r="96" stroke="var(--g)" stroke-dasharray="${C1*fr} ${C1}"/><circle cx="110" cy="110" r="80" stroke="var(--ln)"/><circle cx="110" cy="110" r="80" stroke="var(--bl)" stroke-dasharray="${C2*wr} ${C2}"/></g></svg><div class="c"><small>Today · calories</small><div class="big">${big}</div><small>${lab}</small><small>Goal ${G.k} kcal</small><div class="w">${w} / ${G.w} mL</div></div></div>
+<div class="pager" id="pg"><div class="pg p1">${mcard("Protein",t.p,G.p,"var(--pr)","g")}${mcard("Fats",t.f,G.f,"var(--fa)","g")}${mcard("Carbs",t.c,G.c,"var(--ca)","g")}${mcard("Fiber",t.fi,G.fi,"var(--fi)","g")}</div><div class="pg p2">${mcard("Sugar",0,G.su,"#e3a947","g")}${mcard("Sodium",0,G.na,"#c07fc0","mg")}${mcard("Cholesterol",0,G.ch,"#d98a60","mg")}</div></div>
+<div class="dots"><i class="on"></i><i></i></div>
+<div class="row"><button class="cd w" id="cw"><h4>Daily Hydration</h4><div class="v">${w}<small style="display:inline"> mL</small></div><small>${Math.round(100*w/G.w)}% of daily goal</small></button><button class="cd f" id="cf"><h4>Fast</h4><div class="v" id="fv">${fastTxt()}</div><small>${S.fast?"Tap to end or view":"Tap to start fasting"}</small></button></div>
+<div class="row"><button class="cd dk" data-s="Workout"><h4>Workout</h4><small>Log today's session</small></button><button class="cd s" id="cs"><h4>Steps Today</h4><div class="v">${st.toLocaleString()}</div><small>${r1(st*0.000647)} km</small></button></div>
+<h3>Logged Meals</h3>${mel.length?mel.map(x=>`<button class="ml" data-id="${x.id}"><div><b>${x.n}</b><small>${x.m} · ${x.g}g · ${x.p}p ${x.c}c ${x.f}f ${x.fi}fi</small></div><span class="k">${x.k} kcal</span></button>`).join("")+`<p class="empty" style="padding:6px">Tap any entry to delete</p>`:`<p class="empty">Log your first meal</p>`}`;
+$("#rg").onclick=()=>{rem=!rem;render()};$("#cw").onclick=waterSheet;$("#cf").onclick=fastSheet;
+$("#cs").onclick=()=>{const v=prompt("Steps for this day",st);if(v!==null&&!isNaN(+v)){S.steps[dk()]=Math.max(0,Math.round(+v));sv();render()}};
+document.querySelectorAll(".ml").forEach(b=>b.onclick=()=>{if(confirm("Delete this entry?")){S.meals=S.meals.filter(x=>x.id!=b.dataset.id);sv();render()}});
+document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>soon(b.dataset.s));
+$("#pg").onscroll=e=>{const i=e.target.scrollLeft>e.target.clientWidth/2?1:0;document.querySelectorAll(".dots i").forEach((d,j)=>d.className=j==i?"on":"")}}
+function sheet(h){$("#sh").innerHTML=`<div class="bg"></div><div class="pn">${h}</div>`;$("#sh").className="sheet on";$("#sh .bg").onclick=cl}
+function cl(){$("#sh").className="sheet";$("#sh").innerHTML=""}
+function soon(n){sheet(`<h2>${n}</h2><p>This part is not built yet.</p><button class="go l" id="x">Close</button>`);$("#x").onclick=cl}
+function waterSheet(){const w=S.water[dk()]||0;sheet(`<h2>Drink More Water</h2><p>How much did you drink?</p><div class="st"><button id="mi">−</button><b id="av">${amt} mL</b><button id="pl">+</button></div><p style="text-align:center">${w} / ${G.w} mL</p><button class="go" id="aw">Add water</button><button class="go l" id="x">Cancel</button>`);
+$("#mi").onclick=()=>{amt=Math.max(0,amt-50);$("#av").textContent=amt+" mL"};$("#pl").onclick=()=>{amt+=50;$("#av").textContent=amt+" mL"};
+$("#aw").onclick=()=>{S.water[dk()]=w+amt;sv();cl();render()};$("#x").onclick=cl}
+function fastSheet(){const f=S.fast;sheet(`<h2>Fast</h2><p>${S.hrs}:${24-S.hrs} plan · ${S.hrs} hrs</p><select id="pre"><option value="16">16:8</option><option value="18">18:6</option><option value="20">20:4</option><option value="23">OMAD</option></select><div class="tm" id="tm">${fastTxt()}</div><div class="bar"><u id="pb" style="width:${f?Math.min(100*(Date.now()-f.s)/(f.h*36e5),100):0}%"></u></div><button class="go o" id="fb">${f?"End fast":"Start fasting"}</button><button class="go l" id="x">Close</button>`);
+$("#pre").value=S.hrs;$("#pre").onchange=e=>{S.hrs=+e.target.value;if(S.fast)S.fast.h=S.hrs;sv();fastSheet()};
+$("#fb").onclick=()=>{S.fast=f?null:{s:Date.now(),h:S.hrs};sv();cl();render()};$("#x").onclick=cl}
+function mealSheet(){sheet(`<h2>Log a meal</h2><p>Enter the macros yourself</p><label style="font-size:13px;color:var(--mut)">Food name<input id="n" placeholder="e.g. Mom's Lasagna"></label><div class="fld" style="margin-top:8px"><label>Grams<input id="g" type="number" value="100"></label><label>Calories<input id="k" type="number" value="0"></label><label>Protein<input id="p" type="number" value="0"></label><label>Fats<input id="f" type="number" value="0"></label><label>Carbs<input id="c" type="number" value="0"></label><label>Fiber<input id="fi" type="number" value="0"></label></div><div class="chips" id="ch">${["Breakfast","Lunch","Dinner","Snacks"].map(x=>`<button class="${x==meal?"on":""}">${x}</button>`).join("")}</div><button class="go" id="lg">Log it</button><button class="go l" id="x">Cancel</button>`);
+document.querySelectorAll("#ch button").forEach(b=>b.onclick=()=>{meal=b.textContent;document.querySelectorAll("#ch button").forEach(z=>z.className=z==b?"on":"")});
+$("#lg").onclick=()=>{const v=i=>+$("#"+i).value||0;S.meals.push({id:Date.now(),d:dk(),n:$("#n").value||"Meal",m:meal,g:v("g"),k:v("k"),p:v("p"),f:v("f"),c:v("c"),fi:v("fi")});sv();cl();render()};$("#x").onclick=cl}
+$("#pv").onclick=()=>{D.setDate(D.getDate()-1);render()};$("#nx").onclick=()=>{D.setDate(D.getDate()+1);render()};$("#ad").onclick=mealSheet;
+setInterval(()=>{const a=$("#fv"),b=$("#tm");if(a)a.textContent=fastTxt();if(b)b.textContent=fastTxt()},1000);
+render();
+</script><script src="/workout.js"></script><script src="/progress.js"></script><script src="/progress2.js"></script><script src="/ex.js"></script><script src="/me.js"></script><script src="/kit.js"></script><script src="/plan.js"></script><script src="/meals.js"></script><script src="/fastx.js"></script><script src="/routine.js"></script><script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}))</script></body></html>
