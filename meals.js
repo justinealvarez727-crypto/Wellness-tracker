@@ -21,6 +21,6 @@ $("#sv").onclick=()=>{x.n=$("#n").value.trim()||x.n;x.m=ml;x.g=Math.round((+$("#
 const _r=window.render;window.render=function(){_r();const h=[...document.querySelectorAll("#m h3")].find(z=>z.textContent=="Logged Meals");if(!h)return;
 h.style.cssText="display:flex;justify-content:space-between;align-items:center;gap:8px";h.innerHTML=`<span>Logged Meals</span><span style="display:flex;gap:6px"><button id="al" style="${pil}">Advance log</button><button id="bf" style="${pil}">Backfill</button></span>`;
 h.querySelector("#al").onclick=()=>dates(0);h.querySelector("#bf").onclick=()=>dates(1);
-const last=[...S.meals].sort((a,b)=>a.id-b.id).pop();if(last){const r=document.createElement("div");r.innerHTML=`<h3>Recent logs</h3><button class="ml" data-id="${last.id}"><div><b style="color:var(--g)">${last.n}</b><small>${last.m} · ${tm(last)}<br>${mx(last)}</small></div><span class="k">${last.k} kcal</span></button>`;h.before(r)}
+const last=[...S.meals].sort((a,b)=>a.id-b.id).pop();if(last){const r=document.createElement("div");r.innerHTML=`<h3>Recent logs</h3><button class="ml" data-id="${last.id}"><span class="mi">${ico(last.n,last.m)}</span><div><b style="color:var(--g)">${esc(last.n)}</b><small>${last.m} · ${tm(last)}<br>${mx(last)}</small></div><span class="k">${last.k} kcal</span></button>`;h.before(r)}
 document.querySelectorAll("#m .ml[data-id]").forEach(b=>b.onclick=()=>detail(b.dataset.id))};
 render();})();
