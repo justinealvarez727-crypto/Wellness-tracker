@@ -2,47 +2,53 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Today</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f5f4;--cd:#fff;--ink:#1b2420;--mut:#7a857f;--ln:#e3e7e4;--g:#0a6a45;--o:#f08a2c;--bl:#3f7fe0;--pr:#6a8ab8;--fa:#d9805f;--ca:#8aa850;--fi:#4fa59a}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1512;--cd:#18201c;--ink:#eef3f0;--mut:#8d9993;--ln:#26302b;--g:#3fbf8a}}
 :root[data-theme="dark"]{--bg:#0f1512;--cd:#18201c;--ink:#eef3f0;--mut:#8d9993;--ln:#26302b;--g:#3fbf8a}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Roboto,system-ui,sans-serif}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.4;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button,input,select{font-family:inherit}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 main{padding:0 16px 120px;max-width:520px;margin:0 auto}
 header{display:flex;align-items:center;gap:10px;padding:14px 16px 6px;max-width:520px;margin:0 auto}
-header b{display:block;font-size:30px;color:var(--g);line-height:1.1}header small{color:var(--mut);font-size:14px}
+header>div{flex:1;text-align:center}header b{display:block;font-size:28px;font-weight:700;letter-spacing:-.4px;color:var(--g);line-height:1.1}header small{color:var(--mut);font-size:14px}
 header .ar{font-size:26px;color:var(--mut);padding:4px 8px}
 .ring{position:relative;width:min(80vw,300px);margin:8px auto;cursor:pointer}
 .ring svg{width:100%;display:block}.ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.c small{color:var(--mut)}.c .big{font-size:56px;font-weight:700;line-height:1}.c .w{color:var(--bl);font-weight:600;margin-top:4px}
+.c small{color:var(--mut);font-size:14px;line-height:1.35}.c .big{font-size:56px;font-weight:700;line-height:1.05;letter-spacing:-1.5px;margin:2px 0}.c .w{color:var(--bl);font-weight:600;margin-top:4px}
 .pager{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;scrollbar-width:none}.pager::-webkit-scrollbar{display:none}
 .pg{flex:0 0 100%;scroll-snap-align:start;display:grid;gap:10px}.p1{grid-template-columns:1fr 1fr}.p2{grid-template-columns:1fr 1fr 1fr}
-.mc{background:var(--cd);border-radius:20px;padding:14px;border:1px solid var(--ln)}.mc b{font-size:28px}.mc b small{font-size:14px;color:var(--mut)}
+.mc{background:var(--cd);border-radius:20px;padding:14px;border:1px solid var(--ln)}.mc b{font-size:28px;font-weight:700;letter-spacing:-.5px}.mc b small{font-size:14px;color:var(--mut)}
 .mc span{display:block;margin:2px 0 8px;font-weight:600;font-size:14px;overflow-wrap:anywhere}.mc em{font-style:normal;color:var(--mut);font-size:13px}
 .mc i{display:block;height:6px;background:var(--ln);border-radius:9px;margin-bottom:6px;overflow:hidden}.mc u{display:block;height:100%;border-radius:9px}
 .dots{display:flex;justify-content:center;gap:6px;margin:10px 0}.dots i{width:8px;height:8px;border-radius:9px;background:var(--ln)}.dots i.on{width:24px;background:var(--g)}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.cd{border-radius:24px;padding:16px;min-height:112px;text-align:left;background:var(--cd);border:1px solid var(--ln)}
-.cd h4{margin:0 0 6px;font-size:17px}.cd .v{font-size:32px;font-weight:300}.cd small{color:var(--mut);display:block}
+.cd{position:relative;isolation:isolate;overflow:hidden;border-radius:26px;padding:18px 18px 0;min-height:168px;text-align:left;border:1px solid var(--ln);background:linear-gradient(180deg,var(--cd) 0%,color-mix(in srgb,var(--c,#8a9a92) 13%,var(--cd)) 100%);display:flex;flex-direction:column;--p:0}
+.cd>*{position:relative;z-index:2}.cd h4{margin:0 0 6px;font-size:18px;font-weight:700;letter-spacing:-.2px}.cd .v{font-size:34px;font-weight:300;line-height:1.15;letter-spacing:-.5px}.cd .v small{display:inline;font-size:16px;font-weight:400}.cd small{color:var(--mut);display:block;font-size:14px}
+.cd .wv{position:absolute;left:0;right:0;bottom:0;height:calc(46px + 0.4% * var(--p));z-index:1;transition:height .5s;background:color-mix(in srgb,var(--c) 42%,var(--cd))}
+.cd .wv svg{position:absolute;left:0;top:-13px;width:100%;height:14px;display:block}.cd .wv .w1{fill:color-mix(in srgb,var(--c) 42%,var(--cd))}.cd .wv .w2{fill:color-mix(in srgb,var(--c) 22%,transparent)}
+.cd .pb{position:absolute;left:18px;right:18px;bottom:16px;height:8px;border-radius:9px;background:#ffffffc8;margin:0;overflow:hidden}.cd .pb u{display:block;height:100%;width:calc(1% * var(--p));min-width:6px;border-radius:9px;background:var(--c);filter:brightness(.82);transition:width .5s}
+.cd.dk{--cd:#161a22;background:#161a22;color:#fff;border-color:#161a22}.cd.dk .pb{background:#ffffff26}.cd.dk small{color:#9aa3b2}
 .cd,.mc{transition:background-image .4s}
-.cd.dk{background:#161a22;color:#fff;border-color:#161a22}.cd.dk small{color:#9aa3b2}
-h3{margin:22px 4px 8px;font-size:22px}
+h3{margin:26px 4px 10px;font-size:20px;font-weight:700;letter-spacing:-.2px;line-height:1.2}
 .ml{display:flex;gap:12px;align-items:center;background:var(--cd);border:1px solid var(--ln);border-radius:18px;padding:12px 14px;margin-bottom:8px;width:100%;text-align:left}
-.ml b{display:block}.ml small{color:var(--mut)}.ml .k{margin-left:auto;color:var(--o);font-weight:700;white-space:nowrap}
+.ml b{display:block;font-weight:600;font-size:16px}.ml small{color:var(--mut);font-size:13px;line-height:1.35}.ml>div{min-width:0;flex:1}.ml .k{margin-left:auto;color:var(--o);font-weight:700;white-space:nowrap}
 .mi{font-size:26px;line-height:1;width:40px;height:40px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;flex:none}
 .empty{color:var(--mut);text-align:center;padding:22px}
-nav{position:fixed;left:0;right:0;bottom:0;background:var(--cd);border-top:1px solid var(--ln);display:flex;justify-content:space-around;align-items:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));max-width:520px;margin:0 auto}
+nav{z-index:3;position:fixed;left:0;right:0;bottom:0;background:var(--cd);border-top:1px solid var(--ln);display:flex;justify-content:space-around;align-items:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));max-width:520px;margin:0 auto}
 nav button{flex:1;font-size:12px;color:var(--mut);padding:6px}nav .on{color:var(--ink);font-weight:700}
 nav .plus{flex:0 0 58px;height:58px;border-radius:50%;background:var(--cd);border:1px solid var(--ln);font-size:30px;margin-top:-26px;color:var(--ink);box-shadow:0 4px 14px #0002}
 .sheet{position:fixed;inset:0;display:none;z-index:9}.sheet.on{display:block}
 .sheet .bg{position:absolute;inset:0;background:#0007}
 .pn{position:absolute;left:0;right:0;bottom:0;background:var(--cd);border-radius:26px 26px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom,0px));max-width:520px;margin:0 auto;max-height:90%;overflow:auto}
-.pn h2{margin:0 0 4px;color:var(--g)}.pn p{margin:0 0 14px;color:var(--mut)}
+.pn h2{margin:0 0 6px;color:var(--g);font-size:24px;font-weight:700;letter-spacing:-.3px;line-height:1.2}.pn p{margin:0 0 14px;color:var(--mut);font-size:15px;line-height:1.45}
+.pn::before{content:"";display:block;width:40px;height:4px;border-radius:9px;background:var(--ln);margin:-8px auto 14px}
 .fld{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fld label{font-size:13px;color:var(--mut);display:block}
-input,select{width:100%;font:inherit;padding:12px;border-radius:14px;border:1px solid var(--ln);background:var(--bg);color:var(--ink);margin-top:4px}
+input,select{width:100%;font:inherit;font-size:16px;padding:12px 14px;border-radius:14px;border:1px solid var(--ln);background:var(--bg);color:var(--ink);margin-top:4px}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.chips button{padding:9px 14px;border-radius:99px;border:1px solid var(--ln)}.chips .on{background:var(--g);color:#fff;border-color:var(--g)}
-.go{display:block;width:100%;padding:15px;border-radius:99px;background:var(--g);color:#fff;font-weight:700;margin-top:14px}
+.go{display:block;width:100%;padding:15px;font-size:16px;font-weight:600;border-radius:99px;background:var(--g);color:#fff;font-weight:700;margin-top:14px}
 .go.o{background:linear-gradient(90deg,#f97b1c,#e23a2a)}.go.l{background:none;color:var(--ink);border:1px solid var(--ln)}
 .st{display:flex;align-items:center;justify-content:center;gap:24px;margin:16px 0}.st button{width:52px;height:52px;border-radius:50%;border:1px solid var(--ln);font-size:26px}.st b{font-size:40px;min-width:120px;text-align:center}
 .tm{font-size:54px;text-align:center;font-weight:300;margin:10px 0}.bar{height:8px;background:var(--ln);border-radius:9px;overflow:hidden}.bar u{display:block;height:100%;background:var(--o)}
@@ -79,8 +85,8 @@ const mel=S.meals.filter(x=>x.d==dk()),wkDone=!!((S.wk&&S.wk.h)||[]).some(x=>x.d
 $("#m").innerHTML=`<div class="ring" id="rg"><svg viewBox="0 0 220 220"><g fill="none" stroke-width="10" stroke-linecap="round" transform="rotate(-90 110 110)"><circle cx="110" cy="110" r="96" stroke="var(--ln)"/><circle cx="110" cy="110" r="96" stroke="var(--g)" stroke-dasharray="${C1*fr} ${C1}"/><circle cx="110" cy="110" r="80" stroke="var(--ln)"/><circle cx="110" cy="110" r="80" stroke="var(--bl)" stroke-dasharray="${C2*wr} ${C2}"/></g></svg><div class="c"><small>Today · calories</small><div class="big">${big}</div><small>${lab}</small><small>Goal ${G.k} kcal</small><div class="w">${w} / ${G.w} mL</div></div></div>
 <div class="pager" id="pg"><div class="pg p1">${mcard("Protein",t.p,G.p,"var(--pr)","g")}${mcard("Fats",t.f,G.f,"var(--fa)","g",1)}${mcard("Carbs",t.c,G.c,"var(--ca)","g",1)}${mcard("Fiber",t.fi,G.fi,"var(--fi)","g")}</div><div class="pg p2">${mcard("Sugar",0,G.su,"#e3a947","g",1)}${mcard("Sodium",0,G.na,"#c07fc0","mg",1)}${mcard("Cholesterol",0,G.ch,"#d98a60","mg",1)}</div></div>
 <div class="dots"><i class="on"></i><i></i></div>
-<div class="row"><button class="cd w" id="cw" style="${fillBg(100*w/G.w,"var(--bl)")}"><h4>Daily Hydration</h4><div class="v">${w}<small style="display:inline"> mL</small></div><small>${Math.round(100*w/G.w)}% of daily goal</small></button><button class="cd f" id="cf" style="${fillBg(S.fast?100*(Date.now()-S.fast.s)/(S.fast.h*36e5):0,"var(--o)")}"><h4>Fast</h4><div class="v" id="fv">${fastTxt()}</div><small>${S.fast?"Tap to end or view":"Tap to start fasting"}</small></button></div>
-<div class="row"><button class="cd dk" data-s="Workout" style="${fillBg(wkDone?100:0,"#3fbf8a")}"><h4>Workout</h4><small>Log today's session</small></button><button class="cd s" id="cs" style="${fillBg(100*st/(S.sg||10000),"var(--g)")}"><h4>Steps Today</h4><div class="v">${st.toLocaleString()}</div><small>${r1(st*0.000647)} km</small></button></div>
+<div class="row"><button class="cd w" id="cw" style="--c:var(--bl);--p:${Math.min(100,100*w/G.w)}"><h4>Daily Hydration</h4><div class="v">${w}<small style="display:inline"> mL</small></div><small>${Math.round(100*w/G.w)}% of daily goal</small><div class="wv"><svg viewBox="0 0 100 14" preserveAspectRatio="none"><path class="w2" d="M0 6C16 0 30 12 50 6S84 0 100 8V14H0Z"/><path class="w1" d="M0 9C18 4 34 13 54 8S86 3 100 9V14H0Z"/></svg><i class="pb"><u></u></i></div></button><button class="cd f" id="cf" style="--c:var(--o);--p:${S.fast?Math.min(100,100*(Date.now()-S.fast.s)/(S.fast.h*36e5)):0}"><h4>Fast</h4><div class="v" id="fv">${fastTxt()}</div><small>${S.fast?"Tap to end or view":"Tap to start fasting"}</small><div class="wv"><svg viewBox="0 0 100 14" preserveAspectRatio="none"><path class="w2" d="M0 6C16 0 30 12 50 6S84 0 100 8V14H0Z"/><path class="w1" d="M0 9C18 4 34 13 54 8S86 3 100 9V14H0Z"/></svg><i class="pb"><u></u></i></div></button></div>
+<div class="row"><button class="cd dk" data-s="Workout" style="--c:#3fbf8a;--p:${wkDone?100:0}"><h4>Workout</h4><div class="v" style="font-size:22px;font-weight:600">${wkDone?"Done ✓":"Not yet"}</div><small>Log today's session</small><div class="wv"><svg viewBox="0 0 100 14" preserveAspectRatio="none"><path class="w2" d="M0 6C16 0 30 12 50 6S84 0 100 8V14H0Z"/><path class="w1" d="M0 9C18 4 34 13 54 8S86 3 100 9V14H0Z"/></svg><i class="pb"><u></u></i></div></button><button class="cd s" id="cs" style="--c:var(--g);--p:${Math.min(100,100*st/(S.sg||10000))}"><h4>Steps Today</h4><div class="v">${st.toLocaleString()}</div><small>${r1(st*0.000647)} km</small><div class="wv"><svg viewBox="0 0 100 14" preserveAspectRatio="none"><path class="w2" d="M0 6C16 0 30 12 50 6S84 0 100 8V14H0Z"/><path class="w1" d="M0 9C18 4 34 13 54 8S86 3 100 9V14H0Z"/></svg><i class="pb"><u></u></i></div></button></div>
 <h3>Logged Meals</h3>${mel.length?mel.map(x=>`<button class="ml" data-id="${x.id}"><span class="mi">${ico(x.n,x.m)}</span><div><b>${esc(x.n)}</b><small>${x.m} · ${x.g}g · ${x.p}p ${x.c}c ${x.f}f ${x.fi}fi</small></div><span class="k">${x.k} kcal</span></button>`).join("")+`<p class="empty" style="padding:6px">Tap any entry to delete</p>`:`<p class="empty">Log your first meal</p>`}`;
 $("#rg").onclick=()=>{rem=!rem;render()};$("#cw").onclick=waterSheet;$("#cf").onclick=fastSheet;
 $("#cs").onclick=()=>{const v=prompt("Steps for this day",st);if(v!==null&&!isNaN(+v)){S.steps[dk()]=Math.max(0,Math.round(+v));sv();render()}};
@@ -100,6 +106,6 @@ function mealSheet(){sheet(`<h2>Log a meal</h2><p>Enter the macros yourself</p><
 document.querySelectorAll("#ch button").forEach(b=>b.onclick=()=>{meal=b.textContent;document.querySelectorAll("#ch button").forEach(z=>z.className=z==b?"on":"")});
 $("#lg").onclick=()=>{const v=i=>+$("#"+i).value||0;S.meals.push({id:Date.now(),d:dk(),n:$("#n").value||"Meal",m:meal,g:v("g"),k:v("k"),p:v("p"),f:v("f"),c:v("c"),fi:v("fi")});sv();cl();render()};$("#x").onclick=cl}
 $("#pv").onclick=()=>{D.setDate(D.getDate()-1);render()};$("#nx").onclick=()=>{D.setDate(D.getDate()+1);render()};$("#ad").onclick=mealSheet;
-setInterval(()=>{const a=$("#fv"),b=$("#tm"),c=$("#cf");if(a)a.textContent=fastTxt();if(b)b.textContent=fastTxt();if(c&&S.fast)c.style.cssText=fillBg(100*(Date.now()-S.fast.s)/(S.fast.h*36e5),"var(--o)")},1000);
+setInterval(()=>{const a=$("#fv"),b=$("#tm"),c=$("#cf");if(a)a.textContent=fastTxt();if(b)b.textContent=fastTxt();if(c&&S.fast)c.style.setProperty("--p",Math.min(100,100*(Date.now()-S.fast.s)/(S.fast.h*36e5)))},1000);
 render();
 </script><script src="/workout.js"></script><script src="/progress.js"></script><script src="/progress2.js"></script><script src="/ex.js"></script><script src="/me.js"></script><script src="/kit.js"></script><script src="/plan.js"></script><script src="/meals.js"></script><script src="/fastx.js"></script><script src="/routine.js"></script><script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}))</script></body></html>
