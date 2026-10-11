@@ -17,3 +17,6 @@ Static app: no build step. Data is stored on the device (localStorage).
 
 ## Built so far
 Today dashboard (ring flip, macro pager), water, fast timer, meal logging, steps entry, Workout (routines, active workout with rest timer, history, Workout Progress), Progress tab with weight log, goal, graph and BMI, Me tab with goals (calculated, custom, zigzag, track), an exercise library with custom exercises, Kitchen (recipes, ingredients, pantry), meal estimate from a built-in food table, workout planner, the steps sheet, and meals (Advance log, Backfill, Recent logs, meal detail, Edit meal, Re-log), fast scheduling, missed fast, plan edit, full view, fasting history, and water history, routine editing, exercise menu, and Progress extras (charts, averages, coach, Macro Journal, report, photos), warm-up/cool-down sections, and the Progress weekly overview calendar, recipe components, steps minutes with calories, Move kcal, reset-time day start, and a body diagram on Workout Progress, plus photos on meals and custom exercises.
+
+## Login & sync
+See SETUP-SYNC.md. Files: config.js, supabase.js (vendored supabase-js 2.45.4), sync.js, supabase.sql.
